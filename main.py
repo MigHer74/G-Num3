@@ -1,6 +1,9 @@
-def main():
-    print("Hello from g-num3!")
+import ui
+import src
 
 
 if __name__ == "__main__":
-    main()
+    src.database_exists()
+
+    app = ui.MainPanel()
+    app.mainloop()
