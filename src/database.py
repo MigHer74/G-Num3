@@ -28,3 +28,36 @@ def create_table():
     )
     conn.commit()
     conn.close()
+
+
+def insert_first_values():
+    conn = connection()
+    cursor = conn.cursor()
+
+    for game_number in range(1, 7):
+        cursor.execute(
+            """
+            INSERT INTO games (game_type, game_week, game_number,
+            game_number_1, game_number_2, game_number_3, game_number_4,
+            game_number_5, game_number_6)
+            VALUES ('S', 'W1', ?, 0, 0, 0, 0, 0, 0);
+            """,
+            (game_number,)
+        )
+
+    for game_week in range(1, 7):
+        game_week = f"W{game_week}"
+
+        for game_number in range(1, 4):
+            cursor.execute(
+                """
+                INSERT INTO games (game_type, game_week, game_number,
+                game_number_1, game_number_2, game_number_3, game_number_4,
+                game_number_5, game_number_6)
+                VALUES ('L', ?, ?, 0, 0, 0, 0, 0, 0);
+                """,
+                (game_week, game_number)
+            )
+
+    conn.commit()
+    conn.close()
