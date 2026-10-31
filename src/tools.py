@@ -1,5 +1,5 @@
 from pathlib import Path
-import database as db
+import src.database as db
 
 
 def database_exists():
@@ -11,3 +11,4 @@ def database_exists():
 
     if not Path(dbFolder + dbFile).is_file():
         db.create_table()
+        db.insert_first_values()
